@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="namespacewin__api" kind="namespace" language="Python">
+    <compoundname>win_api</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacewin__api_1af1a3c271c47318518cbd7922fd4e1d8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list</type>
+        <definition> list win_api.getProcIds</definition>
+        <argsstring>()</argsstring>
+        <name>getProcIds</name>
+        <qualifiedname>win_api.getProcIds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get a list of all current process&apos;/threads by their PID&apos;s </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="17" column="1" bodyfile="win_api.py" bodystart="17" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1ad81c30b36414b4b8b29bdfba7847245e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list</type>
+        <definition> list win_api.getThreadIds</definition>
+        <argsstring>()</argsstring>
+        <name>getThreadIds</name>
+        <qualifiedname>win_api.getThreadIds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get a list of all current process&apos;/threads by their TID&apos;s</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="27" column="1" bodyfile="win_api.py" bodystart="27" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1a756cdae3a8a159e9b61a4bd5eab3994d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list</type>
+        <definition> list win_api.getProcWinTxts</definition>
+        <argsstring>()</argsstring>
+        <name>getProcWinTxts</name>
+        <qualifiedname>win_api.getProcWinTxts</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get a list of all current process&apos;/threads by their Window Text</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="37" column="1" bodyfile="win_api.py" bodystart="37" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1a8c787f4c847ecbd9341b93b16f8eadaf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.getProcBy</definition>
+        <argsstring>([&quot;title&quot;, &quot;id&quot;] by, str value)</argsstring>
+        <name>getProcBy</name>
+        <qualifiedname>win_api.getProcBy</qualifiedname>
+        <param>
+          <attributes>[&quot;title&quot;, &quot;id&quot;]</attributes>
+          <type>by</type>
+          <defname>by</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get Process By &apos;title&apos; | &apos;id&apos;
+
+    Parameters:
+        by (str): &apos;title&apos; | &apos;id&apos;
+        value (str): the value corresponding to the &apos;by&apos; arg
+        
+    Returns:
+    {ProcessHandle}</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="47" column="1" bodyfile="win_api.py" bodystart="47" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1a4a6e15da9952c00d308d569ca88a5390" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list</type>
+        <definition> list win_api.getAvailableCmds</definition>
+        <argsstring>()</argsstring>
+        <name>getAvailableCmds</name>
+        <qualifiedname>win_api.getAvailableCmds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get a list of all available commands as found as an &apos;.exe&apos; within the &apos;windows/system32&apos; directory</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="70" column="1" bodyfile="win_api.py" bodystart="70" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1aa3fa4579f4c8089bffc3ce18ef44741a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.getCmdOutput</definition>
+        <argsstring>(cmd, shell=False)</argsstring>
+        <name>getCmdOutput</name>
+        <qualifiedname>win_api.getCmdOutput</qualifiedname>
+        <param>
+          <type>cmd</type>
+          <defname>cmd</defname>
+        </param>
+        <param>
+          <type>shell</type>
+          <defname>shell</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Runs the provided command and returns the output. If command is invalid, returns False</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="82" column="1" bodyfile="win_api.py" bodystart="82" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1ac54cc0204e4f9ee682f3b736f4ee27ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.getAppObject</definition>
+        <argsstring>(path)</argsstring>
+        <name>getAppObject</name>
+        <qualifiedname>win_api.getAppObject</qualifiedname>
+        <param>
+          <type>path</type>
+          <defname>path</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="90" column="1" bodyfile="win_api.py" bodystart="90" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1ab858b953e03c41c93be559acd88a46ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.openCmdPrompt</definition>
+        <argsstring>()</argsstring>
+        <name>openCmdPrompt</name>
+        <qualifiedname>win_api.openCmdPrompt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="99" column="1" bodyfile="win_api.py" bodystart="99" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1af5d4a7c6096e640b8e3c788ed4a08a68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.createProcess</definition>
+        <argsstring>(path, show_window=True)</argsstring>
+        <name>createProcess</name>
+        <qualifiedname>win_api.createProcess</qualifiedname>
+        <param>
+          <type>path</type>
+          <defname>path</defname>
+        </param>
+        <param>
+          <type>show_window</type>
+          <defname>show_window</defname>
+          <defval>True</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="103" column="1" bodyfile="win_api.py" bodystart="103" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1a2f49c2c54417a7ab4ba9a96734c5e0a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.findFile</definition>
+        <argsstring>(fname)</argsstring>
+        <name>findFile</name>
+        <qualifiedname>win_api.findFile</qualifiedname>
+        <param>
+          <type>fname</type>
+          <defname>fname</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="127" column="1" bodyfile="win_api.py" bodystart="127" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1a000e5d796cf999e30f35d5ad77422aff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.findDir</definition>
+        <argsstring>(dname)</argsstring>
+        <name>findDir</name>
+        <qualifiedname>win_api.findDir</qualifiedname>
+        <param>
+          <type>dname</type>
+          <defname>dname</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="136" column="1" bodyfile="win_api.py" bodystart="136" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1a41249ccb6aa9d2b063bab9a958a889db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.checkNpm</definition>
+        <argsstring>()</argsstring>
+        <name>checkNpm</name>
+        <qualifiedname>win_api.checkNpm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="145" column="1" bodyfile="win_api.py" bodystart="145" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1a1cb47ab5433afd66caa580fb4b6e195c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.checkNodejs</definition>
+        <argsstring>()</argsstring>
+        <name>checkNodejs</name>
+        <qualifiedname>win_api.checkNodejs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="149" column="1" bodyfile="win_api.py" bodystart="149" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacewin__api_1adef9ad7e66b07c56be34a00f849c8f2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def win_api.checkNpmPkg</definition>
+        <argsstring>(pkg)</argsstring>
+        <name>checkNpmPkg</name>
+        <qualifiedname>win_api.checkNpmPkg</qualifiedname>
+        <param>
+          <type>pkg</type>
+          <defname>pkg</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="win_api.py" line="153" column="1" bodyfile="win_api.py" bodystart="153" bodyend="164"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Methods specific to Windows operating system</verbatim> </para>
+    </detaileddescription>
+    <location file="win_api.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

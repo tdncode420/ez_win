@@ -1,0 +1,167 @@
+.TH "win_api" 3 "Sat Sep 17 2022" "Version 0.1.0" "Python Windows API" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+win_api
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "list \fBgetProcIds\fP ()"
+.br
+.ti -1c
+.RI "list \fBgetThreadIds\fP ()"
+.br
+.ti -1c
+.RI "list \fBgetProcWinTxts\fP ()"
+.br
+.ti -1c
+.RI "def \fBgetProcBy\fP (['title', 'id'] by, str value)"
+.br
+.ti -1c
+.RI "list \fBgetAvailableCmds\fP ()"
+.br
+.ti -1c
+.RI "def \fBgetCmdOutput\fP (cmd, shell=False)"
+.br
+.ti -1c
+.RI "def \fBgetAppObject\fP (path)"
+.br
+.ti -1c
+.RI "def \fBopenCmdPrompt\fP ()"
+.br
+.ti -1c
+.RI "def \fBcreateProcess\fP (path, show_window=True)"
+.br
+.ti -1c
+.RI "def \fBfindFile\fP (fname)"
+.br
+.ti -1c
+.RI "def \fBfindDir\fP (dname)"
+.br
+.ti -1c
+.RI "def \fBcheckNpm\fP ()"
+.br
+.ti -1c
+.RI "def \fBcheckNodejs\fP ()"
+.br
+.ti -1c
+.RI "def \fBcheckNpmPkg\fP (pkg)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+Methods specific to Windows operating system
+.fi
+.PP
+ 
+.SH "Function Documentation"
+.PP 
+.SS "def win_api\&.checkNodejs ()"
+
+.PP
+Definition at line \fB149\fP of file \fBwin_api\&.py\fP\&.
+.SS "def win_api\&.checkNpm ()"
+
+.PP
+Definition at line \fB145\fP of file \fBwin_api\&.py\fP\&.
+.SS "def win_api\&.checkNpmPkg ( pkg)"
+
+.PP
+Definition at line \fB153\fP of file \fBwin_api\&.py\fP\&.
+.SS "def win_api\&.createProcess ( path,  show_window = \fCTrue\fP)"
+
+.PP
+Definition at line \fB103\fP of file \fBwin_api\&.py\fP\&.
+.SS "def win_api\&.findDir ( dname)"
+
+.PP
+Definition at line \fB136\fP of file \fBwin_api\&.py\fP\&.
+.SS "def win_api\&.findFile ( fname)"
+
+.PP
+Definition at line \fB127\fP of file \fBwin_api\&.py\fP\&.
+.SS "def win_api\&.getAppObject ( path)"
+
+.PP
+Definition at line \fB90\fP of file \fBwin_api\&.py\fP\&.
+.SS " list win_api\&.getAvailableCmds ()"
+
+.PP
+.nf
+Get a list of all available commands as found as an '\&.exe' within the 'windows/system32' directory
+.fi
+.PP
+ 
+.PP
+Definition at line \fB70\fP of file \fBwin_api\&.py\fP\&.
+.SS "def win_api\&.getCmdOutput ( cmd,  shell = \fCFalse\fP)"
+
+.PP
+.nf
+Runs the provided command and returns the output\&. If command is invalid, returns False
+.fi
+.PP
+ 
+.PP
+Definition at line \fB82\fP of file \fBwin_api\&.py\fP\&.
+.SS "def win_api\&.getProcBy (['title', 'id'] by, str value)"
+
+.PP
+.nf
+Get Process By 'title' | 'id'
+
+    Parameters:
+        by (str): 'title' | 'id'
+        value (str): the value corresponding to the 'by' arg
+        
+    Returns:
+    {ProcessHandle}
+.fi
+.PP
+ 
+.PP
+Definition at line \fB47\fP of file \fBwin_api\&.py\fP\&.
+.SS " list win_api\&.getProcIds ()"
+
+.PP
+.nf
+Get a list of all current process'/threads by their PID's 
+.fi
+.PP
+ 
+.PP
+Definition at line \fB17\fP of file \fBwin_api\&.py\fP\&.
+.SS " list win_api\&.getProcWinTxts ()"
+
+.PP
+.nf
+Get a list of all current process'/threads by their Window Text
+.fi
+.PP
+ 
+.PP
+Definition at line \fB37\fP of file \fBwin_api\&.py\fP\&.
+.SS " list win_api\&.getThreadIds ()"
+
+.PP
+.nf
+Get a list of all current process'/threads by their TID's
+.fi
+.PP
+ 
+.PP
+Definition at line \fB27\fP of file \fBwin_api\&.py\fP\&.
+.SS "def win_api\&.openCmdPrompt ()"
+
+.PP
+Definition at line \fB99\fP of file \fBwin_api\&.py\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Python Windows API from the source code\&.

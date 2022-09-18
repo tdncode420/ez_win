@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.5" xml:lang="en-US">
+  <compound refid="namespacewin__api" kind="namespace"><name>win_api</name>
+    <member refid="namespacewin__api_1af1a3c271c47318518cbd7922fd4e1d8b" kind="function"><name>getProcIds</name></member>
+    <member refid="namespacewin__api_1ad81c30b36414b4b8b29bdfba7847245e" kind="function"><name>getThreadIds</name></member>
+    <member refid="namespacewin__api_1a756cdae3a8a159e9b61a4bd5eab3994d" kind="function"><name>getProcWinTxts</name></member>
+    <member refid="namespacewin__api_1a8c787f4c847ecbd9341b93b16f8eadaf" kind="function"><name>getProcBy</name></member>
+    <member refid="namespacewin__api_1a4a6e15da9952c00d308d569ca88a5390" kind="function"><name>getAvailableCmds</name></member>
+    <member refid="namespacewin__api_1aa3fa4579f4c8089bffc3ce18ef44741a" kind="function"><name>getCmdOutput</name></member>
+    <member refid="namespacewin__api_1ac54cc0204e4f9ee682f3b736f4ee27ba" kind="function"><name>getAppObject</name></member>
+    <member refid="namespacewin__api_1ab858b953e03c41c93be559acd88a46ad" kind="function"><name>openCmdPrompt</name></member>
+    <member refid="namespacewin__api_1af5d4a7c6096e640b8e3c788ed4a08a68" kind="function"><name>createProcess</name></member>
+    <member refid="namespacewin__api_1a2f49c2c54417a7ab4ba9a96734c5e0a6" kind="function"><name>findFile</name></member>
+    <member refid="namespacewin__api_1a000e5d796cf999e30f35d5ad77422aff" kind="function"><name>findDir</name></member>
+    <member refid="namespacewin__api_1a41249ccb6aa9d2b063bab9a958a889db" kind="function"><name>checkNpm</name></member>
+    <member refid="namespacewin__api_1a1cb47ab5433afd66caa580fb4b6e195c" kind="function"><name>checkNodejs</name></member>
+    <member refid="namespacewin__api_1adef9ad7e66b07c56be34a00f849c8f2d" kind="function"><name>checkNpmPkg</name></member>
+  </compound>
+  <compound refid="win__api_8py" kind="file"><name>win_api.py</name>
+  </compound>
+</doxygenindex>

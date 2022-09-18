@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_namespacewin__api" xml:lang="en-US">
+<title>win_api Namespace Reference</title>
+<indexterm><primary>win_api</primary></indexterm>
+<simplesect>
+    <title>Functions    </title>
+        <itemizedlist>
+            <listitem><para>list <link linkend="_namespacewin__api_1af1a3c271c47318518cbd7922fd4e1d8b">getProcIds</link> ()</para>
+</listitem>
+            <listitem><para>list <link linkend="_namespacewin__api_1ad81c30b36414b4b8b29bdfba7847245e">getThreadIds</link> ()</para>
+</listitem>
+            <listitem><para>list <link linkend="_namespacewin__api_1a756cdae3a8a159e9b61a4bd5eab3994d">getProcWinTxts</link> ()</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1a8c787f4c847ecbd9341b93b16f8eadaf">getProcBy</link> ([&quot;title&quot;, &quot;id&quot;] by, str value)</para>
+</listitem>
+            <listitem><para>list <link linkend="_namespacewin__api_1a4a6e15da9952c00d308d569ca88a5390">getAvailableCmds</link> ()</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1aa3fa4579f4c8089bffc3ce18ef44741a">getCmdOutput</link> (cmd, shell=False)</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1ac54cc0204e4f9ee682f3b736f4ee27ba">getAppObject</link> (path)</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1ab858b953e03c41c93be559acd88a46ad">openCmdPrompt</link> ()</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1af5d4a7c6096e640b8e3c788ed4a08a68">createProcess</link> (path, show_window=True)</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1a2f49c2c54417a7ab4ba9a96734c5e0a6">findFile</link> (fname)</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1a000e5d796cf999e30f35d5ad77422aff">findDir</link> (dname)</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1a41249ccb6aa9d2b063bab9a958a889db">checkNpm</link> ()</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1a1cb47ab5433afd66caa580fb4b6e195c">checkNodejs</link> ()</para>
+</listitem>
+            <listitem><para>def <link linkend="_namespacewin__api_1adef9ad7e66b07c56be34a00f849c8f2d">checkNpmPkg</link> (pkg)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Detailed Description</title>
+
+<para><literallayout><computeroutput>Methods specific to Windows operating system</computeroutput></literallayout> </para>
+</section>
+<section>
+<title>Function Documentation</title>
+<anchor xml:id="_namespacewin__api_1a1cb47ab5433afd66caa580fb4b6e195c"/><section>
+    <title>checkNodejs()</title>
+<indexterm><primary>checkNodejs</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>checkNodejs</secondary></indexterm>
+<para><computeroutput>def win_api.checkNodejs ( )</computeroutput></para><para>
+Definition at line <link linkend="_win__api_8py_source_1l00149">149</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1a41249ccb6aa9d2b063bab9a958a889db"/><section>
+    <title>checkNpm()</title>
+<indexterm><primary>checkNpm</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>checkNpm</secondary></indexterm>
+<para><computeroutput>def win_api.checkNpm ( )</computeroutput></para><para>
+Definition at line <link linkend="_win__api_8py_source_1l00145">145</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1adef9ad7e66b07c56be34a00f849c8f2d"/><section>
+    <title>checkNpmPkg()</title>
+<indexterm><primary>checkNpmPkg</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>checkNpmPkg</secondary></indexterm>
+<para><computeroutput>def win_api.checkNpmPkg ( pkg)</computeroutput></para><para>
+Definition at line <link linkend="_win__api_8py_source_1l00153">153</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1af5d4a7c6096e640b8e3c788ed4a08a68"/><section>
+    <title>createProcess()</title>
+<indexterm><primary>createProcess</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>createProcess</secondary></indexterm>
+<para><computeroutput>def win_api.createProcess ( path,  show_window = <computeroutput>True</computeroutput>
+)</computeroutput></para><para>
+Definition at line <link linkend="_win__api_8py_source_1l00103">103</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1a000e5d796cf999e30f35d5ad77422aff"/><section>
+    <title>findDir()</title>
+<indexterm><primary>findDir</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>findDir</secondary></indexterm>
+<para><computeroutput>def win_api.findDir ( dname)</computeroutput></para><para>
+Definition at line <link linkend="_win__api_8py_source_1l00136">136</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1a2f49c2c54417a7ab4ba9a96734c5e0a6"/><section>
+    <title>findFile()</title>
+<indexterm><primary>findFile</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>findFile</secondary></indexterm>
+<para><computeroutput>def win_api.findFile ( fname)</computeroutput></para><para>
+Definition at line <link linkend="_win__api_8py_source_1l00127">127</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1ac54cc0204e4f9ee682f3b736f4ee27ba"/><section>
+    <title>getAppObject()</title>
+<indexterm><primary>getAppObject</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>getAppObject</secondary></indexterm>
+<para><computeroutput>def win_api.getAppObject ( path)</computeroutput></para><para>
+Definition at line <link linkend="_win__api_8py_source_1l00090">90</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1a4a6e15da9952c00d308d569ca88a5390"/><section>
+    <title>getAvailableCmds()</title>
+<indexterm><primary>getAvailableCmds</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>getAvailableCmds</secondary></indexterm>
+<para><computeroutput> list win_api.getAvailableCmds ( )</computeroutput></para>
+<para><literallayout><computeroutput>Get a list of all available commands as found as an &apos;.exe&apos; within the &apos;windows/system32&apos; directory</computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_win__api_8py_source_1l00070">70</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1aa3fa4579f4c8089bffc3ce18ef44741a"/><section>
+    <title>getCmdOutput()</title>
+<indexterm><primary>getCmdOutput</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>getCmdOutput</secondary></indexterm>
+<para><computeroutput>def win_api.getCmdOutput ( cmd,  shell = <computeroutput>False</computeroutput>
+)</computeroutput></para>
+<para><literallayout><computeroutput>Runs the provided command and returns the output. If command is invalid, returns False</computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_win__api_8py_source_1l00082">82</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1a8c787f4c847ecbd9341b93b16f8eadaf"/><section>
+    <title>getProcBy()</title>
+<indexterm><primary>getProcBy</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>getProcBy</secondary></indexterm>
+<para><computeroutput>def win_api.getProcBy ([&quot;title&quot;, &quot;id&quot;] by, str value)</computeroutput></para>
+<para><literallayout><computeroutput>Get Process By &apos;title&apos; | &apos;id&apos;
+
+    Parameters:
+        by (str): &apos;title&apos; | &apos;id&apos;
+        value (str): the value corresponding to the &apos;by&apos; arg
+        
+    Returns:
+    {ProcessHandle}</computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_win__api_8py_source_1l00047">47</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1af1a3c271c47318518cbd7922fd4e1d8b"/><section>
+    <title>getProcIds()</title>
+<indexterm><primary>getProcIds</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>getProcIds</secondary></indexterm>
+<para><computeroutput> list win_api.getProcIds ( )</computeroutput></para>
+<para><literallayout><computeroutput>Get a list of all current process&apos;/threads by their PID&apos;s </computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_win__api_8py_source_1l00017">17</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1a756cdae3a8a159e9b61a4bd5eab3994d"/><section>
+    <title>getProcWinTxts()</title>
+<indexterm><primary>getProcWinTxts</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>getProcWinTxts</secondary></indexterm>
+<para><computeroutput> list win_api.getProcWinTxts ( )</computeroutput></para>
+<para><literallayout><computeroutput>Get a list of all current process&apos;/threads by their Window Text</computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_win__api_8py_source_1l00037">37</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1ad81c30b36414b4b8b29bdfba7847245e"/><section>
+    <title>getThreadIds()</title>
+<indexterm><primary>getThreadIds</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>getThreadIds</secondary></indexterm>
+<para><computeroutput> list win_api.getThreadIds ( )</computeroutput></para>
+<para><literallayout><computeroutput>Get a list of all current process&apos;/threads by their TID&apos;s</computeroutput></literallayout> </para>
+<para>
+Definition at line <link linkend="_win__api_8py_source_1l00027">27</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+<anchor xml:id="_namespacewin__api_1ab858b953e03c41c93be559acd88a46ad"/><section>
+    <title>openCmdPrompt()</title>
+<indexterm><primary>openCmdPrompt</primary><secondary>win_api</secondary></indexterm>
+<indexterm><primary>win_api</primary><secondary>openCmdPrompt</secondary></indexterm>
+<para><computeroutput>def win_api.openCmdPrompt ( )</computeroutput></para><para>
+Definition at line <link linkend="_win__api_8py_source_1l00099">99</link> of file <link linkend="_win__api_8py_source">win_api.py</link>.</para>
+</section>
+</section>
+</section>

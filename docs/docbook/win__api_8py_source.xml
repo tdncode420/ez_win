@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_win__api_8py_source" xml:lang="en-US">
+<title>win_api.py</title>
+<programlisting linenumbering="unnumbered"><anchor xml:id="_win__api_8py_source_1l00001"/><link linkend="_namespacewin__api">00001</link> <emphasis role="stringliteral">&apos;&apos;&apos;Methods&#32;specific&#32;to&#32;Windows&#32;operating&#32;system&apos;&apos;&apos;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00002"/>00002 
+<anchor xml:id="_win__api_8py_source_1l00003"/>00003 
+<anchor xml:id="_win__api_8py_source_1l00004"/>00004 <emphasis role="keyword">from</emphasis>&#32;os&#32;<emphasis role="keyword">import</emphasis>&#32;path,&#32;walk,&#32;sep,&#32;popen
+<anchor xml:id="_win__api_8py_source_1l00005"/>00005 <emphasis role="keyword">import</emphasis>&#32;os
+<anchor xml:id="_win__api_8py_source_1l00006"/>00006 <emphasis role="keyword">import</emphasis>&#32;re
+<anchor xml:id="_win__api_8py_source_1l00007"/>00007 <emphasis role="keyword">import</emphasis>&#32;pythoncom
+<anchor xml:id="_win__api_8py_source_1l00008"/>00008 <emphasis role="keyword">from</emphasis>&#32;win32com.shell&#32;<emphasis role="keyword">import</emphasis>&#32;shell
+<anchor xml:id="_win__api_8py_source_1l00009"/>00009 <emphasis role="keyword">import</emphasis>&#32;pywinauto
+<anchor xml:id="_win__api_8py_source_1l00010"/>00010 <emphasis role="keyword">import</emphasis>&#32;win32api
+<anchor xml:id="_win__api_8py_source_1l00011"/>00011 <emphasis role="keyword">import</emphasis>&#32;win32gui
+<anchor xml:id="_win__api_8py_source_1l00012"/>00012 <emphasis role="keyword">import</emphasis>&#32;win32con
+<anchor xml:id="_win__api_8py_source_1l00013"/>00013 <emphasis role="keyword">import</emphasis>&#32;win32process
+<anchor xml:id="_win__api_8py_source_1l00014"/>00014 <emphasis role="keyword">from</emphasis>&#32;subprocess&#32;<emphasis role="keyword">import</emphasis>&#32;check_output
+<anchor xml:id="_win__api_8py_source_1l00015"/>00015 
+<anchor xml:id="_win__api_8py_source_1l00016"/>00016 
+<anchor xml:id="_win__api_8py_source_1l00017"/><link linkend="_namespacewin__api_1af1a3c271c47318518cbd7922fd4e1d8b">00017</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespacewin__api_1af1a3c271c47318518cbd7922fd4e1d8b">getProcIds</link>()&#32;-&gt;&#32;list:
+<anchor xml:id="_win__api_8py_source_1l00018"/>00018 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;&apos;&apos;Get&#32;a&#32;list&#32;of&#32;all&#32;current&#32;process&apos;/threads&#32;by&#32;their&#32;PID&apos;s&#32;&apos;&apos;&apos;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00019"/>00019 &#32;&#32;&#32;&#32;thelist&#32;=&#32;[]
+<anchor xml:id="_win__api_8py_source_1l00020"/>00020 
+<anchor xml:id="_win__api_8py_source_1l00021"/>00021 &#32;&#32;&#32;&#32;<emphasis role="keyword">def&#32;</emphasis>findit(hwnd,&#32;ctx):
+<anchor xml:id="_win__api_8py_source_1l00022"/>00022 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;thelist.append(win32process.GetWindowThreadProcessId(hwnd)[1])
+<anchor xml:id="_win__api_8py_source_1l00023"/>00023 &#32;&#32;&#32;&#32;win32gui.EnumWindows(findit,&#32;<emphasis role="keywordtype">None</emphasis>)
+<anchor xml:id="_win__api_8py_source_1l00024"/>00024 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;thelist
+<anchor xml:id="_win__api_8py_source_1l00025"/>00025 
+<anchor xml:id="_win__api_8py_source_1l00026"/>00026 
+<anchor xml:id="_win__api_8py_source_1l00027"/><link linkend="_namespacewin__api_1ad81c30b36414b4b8b29bdfba7847245e">00027</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespacewin__api_1ad81c30b36414b4b8b29bdfba7847245e">getThreadIds</link>()&#32;-&gt;&#32;list:
+<anchor xml:id="_win__api_8py_source_1l00028"/>00028 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;&apos;&apos;Get&#32;a&#32;list&#32;of&#32;all&#32;current&#32;process&apos;/threads&#32;by&#32;their&#32;TID&apos;s&apos;&apos;&apos;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00029"/>00029 &#32;&#32;&#32;&#32;thelist&#32;=&#32;[]
+<anchor xml:id="_win__api_8py_source_1l00030"/>00030 
+<anchor xml:id="_win__api_8py_source_1l00031"/>00031 &#32;&#32;&#32;&#32;<emphasis role="keyword">def&#32;</emphasis>findit(hwnd,&#32;ctx):
+<anchor xml:id="_win__api_8py_source_1l00032"/>00032 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;thelist.append(win32process.GetWindowThreadProcessId(hwnd)[0])
+<anchor xml:id="_win__api_8py_source_1l00033"/>00033 &#32;&#32;&#32;&#32;win32gui.EnumWindows(findit,&#32;<emphasis role="keywordtype">None</emphasis>)
+<anchor xml:id="_win__api_8py_source_1l00034"/>00034 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;thelist
+<anchor xml:id="_win__api_8py_source_1l00035"/>00035 
+<anchor xml:id="_win__api_8py_source_1l00036"/>00036 
+<anchor xml:id="_win__api_8py_source_1l00037"/><link linkend="_namespacewin__api_1a756cdae3a8a159e9b61a4bd5eab3994d">00037</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespacewin__api_1a756cdae3a8a159e9b61a4bd5eab3994d">getProcWinTxts</link>()&#32;-&gt;&#32;list:
+<anchor xml:id="_win__api_8py_source_1l00038"/>00038 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;&apos;&apos;Get&#32;a&#32;list&#32;of&#32;all&#32;current&#32;process&apos;/threads&#32;by&#32;their&#32;Window&#32;Text&apos;&apos;&apos;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00039"/>00039 &#32;&#32;&#32;&#32;thelist&#32;=&#32;[]
+<anchor xml:id="_win__api_8py_source_1l00040"/>00040 
+<anchor xml:id="_win__api_8py_source_1l00041"/>00041 &#32;&#32;&#32;&#32;<emphasis role="keyword">def&#32;</emphasis>findit(hwnd,&#32;ctx):
+<anchor xml:id="_win__api_8py_source_1l00042"/>00042 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;thelist.append(win32gui.GetWindowText(hwnd))
+<anchor xml:id="_win__api_8py_source_1l00043"/>00043 &#32;&#32;&#32;&#32;win32gui.EnumWindows(findit,&#32;<emphasis role="keywordtype">None</emphasis>)
+<anchor xml:id="_win__api_8py_source_1l00044"/>00044 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;thelist
+<anchor xml:id="_win__api_8py_source_1l00045"/>00045 
+<anchor xml:id="_win__api_8py_source_1l00046"/>00046 
+<anchor xml:id="_win__api_8py_source_1l00047"/><link linkend="_namespacewin__api_1a8c787f4c847ecbd9341b93b16f8eadaf">00047</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespacewin__api_1a8c787f4c847ecbd9341b93b16f8eadaf">getProcBy</link>(by:&#32;[<emphasis role="stringliteral">&quot;title&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;id&quot;</emphasis>],&#32;value:&#32;str):
+<anchor xml:id="_win__api_8py_source_1l00048"/>00048 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;&apos;&apos;Get&#32;Process&#32;By&#32;&apos;title&apos;&#32;|&#32;&apos;id&apos;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00049"/>00049 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00050"/>00050 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Parameters:</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00051"/>00051 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;by&#32;(str):&#32;&apos;title&apos;</emphasis>&#32;|&#32;<emphasis role="stringliteral">&apos;id&apos;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00052"/>00052 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;value&#32;(str):&#32;the&#32;value&#32;corresponding&#32;to&#32;the&#32;<emphasis role="stringliteral">&apos;by&apos;</emphasis>&#32;arg
+<anchor xml:id="_win__api_8py_source_1l00053"/>00053 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+<anchor xml:id="_win__api_8py_source_1l00054"/>00054 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;Returns:
+<anchor xml:id="_win__api_8py_source_1l00055"/>00055 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;{ProcessHandle}
+<anchor xml:id="_win__api_8py_source_1l00056"/>00056 &#32;&#32;&#32;&#32;
+<anchor xml:id="_win__api_8py_source_1l00057"/>00057 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;&apos;&apos;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00058"/>00058 <emphasis role="stringliteral">&#32;&#32;&#32;&#32;</emphasis><emphasis role="keywordflow">if</emphasis>&#32;by&#32;==&#32;<emphasis role="stringliteral">&quot;title&quot;</emphasis>:
+<anchor xml:id="_win__api_8py_source_1l00059"/>00059 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">def&#32;</emphasis>findit(hwnd,&#32;ctx):
+<anchor xml:id="_win__api_8py_source_1l00060"/>00060 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;win32gui.GetWindowText(hwnd)&#32;==&#32;value:
+<anchor xml:id="_win__api_8py_source_1l00061"/>00061 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS,&#32;<emphasis role="keyword">True</emphasis>,&#32;win32process.GetProcessId(hwnd))
+<anchor xml:id="_win__api_8py_source_1l00062"/>00062 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;win32gui.EnumWindows(findit,&#32;<emphasis role="keywordtype">None</emphasis>)
+<anchor xml:id="_win__api_8py_source_1l00063"/>00063 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">elif</emphasis>&#32;by&#32;==&#32;<emphasis role="stringliteral">&quot;id&quot;</emphasis>:
+<anchor xml:id="_win__api_8py_source_1l00064"/>00064 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keyword">def&#32;</emphasis>findit(hwnd,&#32;ctx):
+<anchor xml:id="_win__api_8py_source_1l00065"/>00065 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;win32process.GetWindowThreadProcessId(hwnd)[1]&#32;==&#32;value:
+<anchor xml:id="_win__api_8py_source_1l00066"/>00066 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS,&#32;<emphasis role="keyword">True</emphasis>,&#32;win32process.GetProcessId(hwnd))
+<anchor xml:id="_win__api_8py_source_1l00067"/>00067 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;win32gui.EnumWindows(findit,&#32;<emphasis role="keywordtype">None</emphasis>)
+<anchor xml:id="_win__api_8py_source_1l00068"/>00068 
+<anchor xml:id="_win__api_8py_source_1l00069"/>00069 
+<anchor xml:id="_win__api_8py_source_1l00070"/><link linkend="_namespacewin__api_1a4a6e15da9952c00d308d569ca88a5390">00070</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespacewin__api_1a4a6e15da9952c00d308d569ca88a5390">getAvailableCmds</link>()&#32;-&gt;&#32;list:
+<anchor xml:id="_win__api_8py_source_1l00071"/>00071 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;&apos;&apos;Get&#32;a&#32;list&#32;of&#32;all&#32;available&#32;commands&#32;as&#32;found&#32;as&#32;an&#32;&apos;.exe&apos;&#32;within&#32;the&#32;&apos;windows/system32&apos;&#32;directory&apos;&apos;&apos;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00072"/>00072 &#32;&#32;&#32;&#32;cmds&#32;=&#32;[]
+<anchor xml:id="_win__api_8py_source_1l00073"/>00073 &#32;&#32;&#32;&#32;CMD_PATH&#32;=&#32;<emphasis role="stringliteral">&quot;C:\\Windows\\System32&quot;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00074"/>00074 &#32;&#32;&#32;&#32;all_files&#32;=&#32;os.listdir(CMD_PATH)
+<anchor xml:id="_win__api_8py_source_1l00075"/>00075 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;file_&#32;<emphasis role="keywordflow">in</emphasis>&#32;all_files:
+<anchor xml:id="_win__api_8py_source_1l00076"/>00076 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;x&#32;=&#32;re.search(<emphasis role="stringliteral">&quot;.exe$&quot;</emphasis>,&#32;file_)
+<anchor xml:id="_win__api_8py_source_1l00077"/>00077 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;x:
+<anchor xml:id="_win__api_8py_source_1l00078"/>00078 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;cmds.append(file_.replace(<emphasis role="stringliteral">&quot;.exe&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>))
+<anchor xml:id="_win__api_8py_source_1l00079"/>00079 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;cmds
+<anchor xml:id="_win__api_8py_source_1l00080"/>00080 
+<anchor xml:id="_win__api_8py_source_1l00081"/>00081 
+<anchor xml:id="_win__api_8py_source_1l00082"/><link linkend="_namespacewin__api_1aa3fa4579f4c8089bffc3ce18ef44741a">00082</link> <emphasis role="keyword">def&#32;</emphasis><link linkend="_namespacewin__api_1aa3fa4579f4c8089bffc3ce18ef44741a">getCmdOutput</link>(cmd,&#32;shell=False):
+<anchor xml:id="_win__api_8py_source_1l00083"/>00083 &#32;&#32;&#32;&#32;<emphasis role="stringliteral">&apos;&apos;&apos;Runs&#32;the&#32;provided&#32;command&#32;and&#32;returns&#32;the&#32;output.&#32;If&#32;command&#32;is&#32;invalid,&#32;returns&#32;False&apos;&apos;&apos;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00084"/>00084 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">try</emphasis>:
+<anchor xml:id="_win__api_8py_source_1l00085"/>00085 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;check_output(cmd,&#32;shell=shell).decode()
+<anchor xml:id="_win__api_8py_source_1l00086"/>00086 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">except</emphasis>&#32;Exception:
+<anchor xml:id="_win__api_8py_source_1l00087"/>00087 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keyword">False</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00088"/>00088 
+<anchor xml:id="_win__api_8py_source_1l00089"/>00089 
+<anchor xml:id="_win__api_8py_source_1l00090"/>00090 <emphasis role="keyword">def&#32;</emphasis>getAppObject(path):
+<anchor xml:id="_win__api_8py_source_1l00091"/>00091 &#32;&#32;&#32;&#32;app&#32;=&#32;pywinauto.Application().connect(path=path)
+<anchor xml:id="_win__api_8py_source_1l00092"/>00092 &#32;&#32;&#32;&#32;method_list&#32;=&#32;[method&#32;<emphasis role="keywordflow">for</emphasis>&#32;method&#32;<emphasis role="keywordflow">in</emphasis>&#32;dir(
+<anchor xml:id="_win__api_8py_source_1l00093"/>00093 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;app)&#32;<emphasis role="keywordflow">if</emphasis>&#32;method.startswith(<emphasis role="stringliteral">&apos;__&apos;</emphasis>)&#32;<emphasis role="keywordflow">is</emphasis>&#32;<emphasis role="keyword">False</emphasis>]
+<anchor xml:id="_win__api_8py_source_1l00094"/>00094 &#32;&#32;&#32;&#32;print(method_list)
+<anchor xml:id="_win__api_8py_source_1l00095"/>00095 &#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;app.Window_().TypeKeys(&apos;cmd.exe&#32;/?{ENTER}&apos;,&#32;with_spaces=True,&#32;pause=0.1)</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00096"/>00096 &#32;&#32;&#32;&#32;<emphasis role="comment">#&#32;app.Window_().TypeKeys(&apos;{ENTER&#32;7}&apos;,&#32;pause=0.1)</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00097"/>00097 
+<anchor xml:id="_win__api_8py_source_1l00098"/>00098 
+<anchor xml:id="_win__api_8py_source_1l00099"/>00099 <emphasis role="keyword">def&#32;</emphasis>openCmdPrompt():
+<anchor xml:id="_win__api_8py_source_1l00100"/>00100 &#32;&#32;&#32;&#32;app&#32;=&#32;penApplication(COM_SPEC_PATH)
+<anchor xml:id="_win__api_8py_source_1l00101"/>00101 
+<anchor xml:id="_win__api_8py_source_1l00102"/>00102 
+<anchor xml:id="_win__api_8py_source_1l00103"/>00103 <emphasis role="keyword">def&#32;</emphasis>createProcess(path,&#32;show_window=True):
+<anchor xml:id="_win__api_8py_source_1l00104"/>00104 
+<anchor xml:id="_win__api_8py_source_1l00105"/>00105 &#32;&#32;&#32;&#32;si&#32;=&#32;win32process.STARTUPINFO()
+<anchor xml:id="_win__api_8py_source_1l00106"/>00106 
+<anchor xml:id="_win__api_8py_source_1l00107"/>00107 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;show_window:
+<anchor xml:id="_win__api_8py_source_1l00108"/>00108 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;dw_c_flag&#32;=&#32;0
+<anchor xml:id="_win__api_8py_source_1l00109"/>00109 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">else</emphasis>:
+<anchor xml:id="_win__api_8py_source_1l00110"/>00110 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;dw_c_flag&#32;=&#32;win32process.CREATE_NO_WINDOW
+<anchor xml:id="_win__api_8py_source_1l00111"/>00111 
+<anchor xml:id="_win__api_8py_source_1l00112"/>00112 &#32;&#32;&#32;&#32;proc&#32;=&#32;win32process.CreateProcess(
+<anchor xml:id="_win__api_8py_source_1l00113"/>00113 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">None</emphasis>,
+<anchor xml:id="_win__api_8py_source_1l00114"/>00114 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;path,
+<anchor xml:id="_win__api_8py_source_1l00115"/>00115 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">None</emphasis>,
+<anchor xml:id="_win__api_8py_source_1l00116"/>00116 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">None</emphasis>,
+<anchor xml:id="_win__api_8py_source_1l00117"/>00117 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;0,
+<anchor xml:id="_win__api_8py_source_1l00118"/>00118 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;dw_c_flag,
+<anchor xml:id="_win__api_8py_source_1l00119"/>00119 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">None</emphasis>,
+<anchor xml:id="_win__api_8py_source_1l00120"/>00120 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordtype">None</emphasis>,
+<anchor xml:id="_win__api_8py_source_1l00121"/>00121 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;si
+<anchor xml:id="_win__api_8py_source_1l00122"/>00122 &#32;&#32;&#32;&#32;)
+<anchor xml:id="_win__api_8py_source_1l00123"/>00123 
+<anchor xml:id="_win__api_8py_source_1l00124"/>00124 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;proc
+<anchor xml:id="_win__api_8py_source_1l00125"/>00125 
+<anchor xml:id="_win__api_8py_source_1l00126"/>00126 
+<anchor xml:id="_win__api_8py_source_1l00127"/>00127 <emphasis role="keyword">def&#32;</emphasis>findFile(fname):
+<anchor xml:id="_win__api_8py_source_1l00128"/>00128 &#32;&#32;&#32;&#32;root_path&#32;=&#32;path.abspath(sep)
+<anchor xml:id="_win__api_8py_source_1l00129"/>00129 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;root,&#32;dirs,&#32;files&#32;<emphasis role="keywordflow">in</emphasis>&#32;walk(root_path):
+<anchor xml:id="_win__api_8py_source_1l00130"/>00130 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;f&#32;<emphasis role="keywordflow">in</emphasis>&#32;files:
+<anchor xml:id="_win__api_8py_source_1l00131"/>00131 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;f&#32;==&#32;fname:
+<anchor xml:id="_win__api_8py_source_1l00132"/>00132 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;path.join(root,&#32;f)
+<anchor xml:id="_win__api_8py_source_1l00133"/>00133 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keywordtype">None</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00134"/>00134 
+<anchor xml:id="_win__api_8py_source_1l00135"/>00135 
+<anchor xml:id="_win__api_8py_source_1l00136"/>00136 <emphasis role="keyword">def&#32;</emphasis>findDir(dname):
+<anchor xml:id="_win__api_8py_source_1l00137"/>00137 &#32;&#32;&#32;&#32;root_path&#32;=&#32;path.abspath(sep)
+<anchor xml:id="_win__api_8py_source_1l00138"/>00138 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;root,&#32;dirs,&#32;files&#32;<emphasis role="keywordflow">in</emphasis>&#32;walk(root_path):
+<anchor xml:id="_win__api_8py_source_1l00139"/>00139 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">for</emphasis>&#32;d&#32;<emphasis role="keywordflow">in</emphasis>&#32;dirs:
+<anchor xml:id="_win__api_8py_source_1l00140"/>00140 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">if</emphasis>&#32;d&#32;==&#32;dname:
+<anchor xml:id="_win__api_8py_source_1l00141"/>00141 &#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;path.join(root,&#32;d)
+<anchor xml:id="_win__api_8py_source_1l00142"/>00142 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;<emphasis role="keywordtype">None</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00143"/>00143 
+<anchor xml:id="_win__api_8py_source_1l00144"/>00144 
+<anchor xml:id="_win__api_8py_source_1l00145"/>00145 <emphasis role="keyword">def&#32;</emphasis>checkNpm():
+<anchor xml:id="_win__api_8py_source_1l00146"/>00146 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">pass</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00147"/>00147 
+<anchor xml:id="_win__api_8py_source_1l00148"/>00148 
+<anchor xml:id="_win__api_8py_source_1l00149"/>00149 <emphasis role="keyword">def&#32;</emphasis>checkNodejs():
+<anchor xml:id="_win__api_8py_source_1l00150"/>00150 &#32;&#32;&#32;&#32;<emphasis role="keywordflow">pass</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00151"/>00151 
+<anchor xml:id="_win__api_8py_source_1l00152"/>00152 
+<anchor xml:id="_win__api_8py_source_1l00153"/>00153 <emphasis role="keyword">def&#32;</emphasis>checkNpmPkg(pkg):
+<anchor xml:id="_win__api_8py_source_1l00154"/>00154 &#32;&#32;&#32;output_stream&#32;=&#32;popen(<emphasis role="stringliteral">&quot;npm&#32;list&#32;-g&#32;{}&quot;</emphasis>.format(pkg))
+<anchor xml:id="_win__api_8py_source_1l00155"/>00155 &#32;&#32;&#32;out&#32;=&#32;output_stream.read()
+<anchor xml:id="_win__api_8py_source_1l00156"/>00156 &#32;&#32;&#32;out2&#32;=&#32;out.replace(<emphasis role="stringliteral">&quot;â””â”€â”€&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>)
+<anchor xml:id="_win__api_8py_source_1l00157"/>00157 &#32;&#32;&#32;out2&#32;=&#32;out2.replace(<emphasis role="stringliteral">&quot;â””â”€â”¬&quot;</emphasis>,&#32;<emphasis role="stringliteral">&quot;&quot;</emphasis>)
+<anchor xml:id="_win__api_8py_source_1l00158"/>00158 &#32;&#32;&#32;oArr&#32;=&#32;out2.split(<emphasis role="stringliteral">&quot;\n&quot;</emphasis>)
+<anchor xml:id="_win__api_8py_source_1l00159"/>00159 &#32;&#32;&#32;out3&#32;=&#32;oArr[1].strip()
+<anchor xml:id="_win__api_8py_source_1l00160"/>00160 &#32;&#32;&#32;found&#32;=&#32;out3&#32;!=&#32;<emphasis role="stringliteral">&quot;(empty)&quot;</emphasis>
+<anchor xml:id="_win__api_8py_source_1l00161"/>00161 &#32;&#32;&#32;<emphasis role="keywordflow">return</emphasis>&#32;found
+<anchor xml:id="_win__api_8py_source_1l00162"/>00162 
+<anchor xml:id="_win__api_8py_source_1l00163"/>00163 
+</programlisting></section>
