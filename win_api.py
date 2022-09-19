@@ -155,9 +155,9 @@ def getCmdOut(cmd, shell=False):
 
 
 def findFile(fname, root=path.abspath(sep), find_all=False, timeout=None):
-    '''Searches for a given file name recursively started at the os's root
+    '''Searches for a given file by file name recursively
     
-        NOTE: Depending on where the file being searched for is located and what directory the search is started in (aka 'root' arg), this method may take a little time to complete, especially if arg 'find_all' is set to True. To control the amount of execution time that you find acceptable, refer the the 'timeout' arg.
+        NOTE: Depending on where the file being searched for is located and what root directory the search is started in (aka 'root' arg), this method may take a little time to complete, especially if arg 'find_all' is set to True. To control the amount of execution time that you find acceptable, refer the the 'timeout' arg.
     
         Parameters:
             fname (str): the name of the file to search for
@@ -166,8 +166,7 @@ def findFile(fname, root=path.abspath(sep), find_all=False, timeout=None):
             timeout (int): a number (in seconds) to run the function until returning
     
         Returns:
-        str: the path to the file if found
-        None: if not found
+            str | None: the path to the file if found, None if not found
         
         # using default arg values
         findFile('chkdsk.exe')
@@ -206,32 +205,85 @@ def findFile(fname, root=path.abspath(sep), find_all=False, timeout=None):
                       
     return found
 
-def findDir(dname):
-    root_path = path.abspath(sep)
-    for root, dirs, files in walk(root_path):
-        for d in dirs:
-            if d == dname:
-                return path.join(root, d)
-    return None
+
+def findDir(dname, root=path.abspath(sep), find_all=False, timeout=None):
+    '''Searches for a given directory by directory name recursively
+    
+        NOTE: Depending on where the directory being searched for is located and what root directory the search is started in (aka 'root' arg), this method may take a little time to complete, especially if arg 'find_all' is set to True. To control the amount of execution time that you find acceptable, refer the the 'timeout' arg.
+    
+        Parameters:
+            dname (str): the name of the directory to search for
+            root (str): the directory to start the search in. Default is the os root ('c:')
+            find_all (bool): search for all directories matching pattern; If False, will return path after finding the first match
+            timeout (int): a number (in seconds) to run the function until returning
+    
+        Returns:
+            str | None: the path to the directory if found, None if not found
+        
+        # using default arg values
+        findDir('system32')
+        >> ['c://windows/system32']
+        
+        # specifying 'root' directory to start in, reducing execution time
+        findDir('system32', root='c://windows')
+        >> ['c://windows/system32']
+        
+        # Search for all found instances
+        findDir('system32', root='c://windows, find_all=True')
+        >> ['c://windows/system32']
+    
+        # specifying the amount amount of execution time allowed (in this case, 10 seconds)
+        findDir('system32', root='c://windows', find_all=True, timeout=10)
+        >> ['c://windows/system32']
+    '''
+
+    found = []
+
+    def run():
+        for rt, dirs, files in walk(root):
+            for f in files:
+                if f == fname:
+                    if not find_all:
+                        return path.join(rt, f)
+                    found.append(path.join(rt, f))
+
+    if timeout is not None and isinstance(timeout, int):
+        p = multiprocessing.Process(target=run, name="Run", args=(timeout,))
+        p.start()
+        time.sleep(10)
+        p.terminate()
+        p.join()
+    else:
+        run()
+
+    return found
 
 
-def checkNpm():
-    pass
-
-
-def checkNodejs():
-    pass
+def checkNpmV():
+    '''Get the installed NPM version
+    
+        Returns:
+        str: NPM version (if found) or None
+    
+    '''
+    
+    try:
+        return str(check_output("npm --version", shell=False).decode()).replace('v', '')
+    except Exception:
+        return None
 
 
 def checkNpmPkg(pkg):
-   output_stream = popen("npm list -g {}".format(pkg))
-   out = output_stream.read()
-   out2 = out.replace("â””â”€â”€", "")
-   out2 = out2.replace("â””â”€â”¬", "")
-   oArr = out2.split("\n")
-   out3 = oArr[1].strip()
-   found = out3 != "(empty)"
-   return found
+    '''Check if the given NPM Package is globally installed
+    
+        Parameters:
+            pkg (str) - the name of thhe package to check for
+    
+    '''
+    
+    cmd = popen("npm list -g {}".format(pkg))
+    return str(cmd.read().replace("â””â”€â”€", "").replace("â””â”€â”¬", "")).split("\n")[1].strip() != "(empty)"
+
 
 
 def getJdkV():
