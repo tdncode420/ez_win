@@ -258,3 +258,15 @@ def getNodejsV():
         return str(check_output("node --version", shell=False).decode()).replace('v', '')
     except Exception:
         return None
+
+def getRegEdAttr(attr = "Path"):
+    def _filter_(x):
+        if len(x.strip()) == 0:
+            return False
+        else:
+            return True
+    return ' '.join(list(filter(_filter_, str(check_output('reg.exe query "HKEY_LOCAL_MACHINE\SOFTWARE\Android Studio" /v {}'.format(attr)).decode()).split('\n')[2].strip().split(' ')))[2:])
+    
+    
+def is_os_64bit():
+    return platform.machine().endswith('64')
