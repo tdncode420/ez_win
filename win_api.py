@@ -16,6 +16,11 @@ import multiprocessing
 import time
 from subprocess import check_output
 
+ROOT = os.path.abspath(os.sep)
+USER_NAME = os.getlogin()
+APP_DATA = os.path.join(ROOT, 'Users', USER_NAME, 'AppData')
+LOCAL_APP_DATA = os.path.join(APP_DATA, 'Local')
+ROAMING_APP_DATA = os.path.join(APP_DATA, 'Roaming')
 
 def getProcIds() -> list:
     '''Get a list of all current process'/threads by their PID's 
@@ -183,12 +188,12 @@ def findFile(fname, root=path.abspath(sep), find_all=False, timeout=None):
     
     found = []
     def run():
-        for root, dirs, files in walk(root):
+        for rt, dirs, files in walk(root):
             for f in files:
                 if f == fname:
                     if not find_all:
-                        return path.join(root, f)
-                    found.append(path.join(root, f))
+                        return path.join(rt, f)
+                    found.append(path.join(rt, f))
                     
     if timeout is not None and isinstance(timeout, int):            
         p = multiprocessing.Process(target=run, name="Run", args=(timeout,))
@@ -201,7 +206,6 @@ def findFile(fname, root=path.abspath(sep), find_all=False, timeout=None):
                       
     return found
 
-print(findFile('cmd.exe'))
 def findDir(dname):
     root_path = path.abspath(sep)
     for root, dirs, files in walk(root_path):
@@ -230,3 +234,27 @@ def checkNpmPkg(pkg):
    return found
 
 
+def getJdkV():
+    '''Get the installed JDK version
+    
+        Returns:
+        str: JDK version (if found) or None
+    
+    '''
+    try:
+        return str(check_output("javac -version", shell=False).decode()).replace('javac ', '')
+    except Exception:
+        return None
+    
+
+def getNodejsV():
+    '''Get the installed Nodejs version
+    
+        Returns:
+        str: Nodejs version (if found) or None
+    
+    '''
+    try:
+        return str(check_output("node --version", shell=False).decode()).replace('v', '')
+    except Exception:
+        return None
