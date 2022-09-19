@@ -259,20 +259,6 @@ def findDir(dname, root=path.abspath(sep), find_all=False, timeout=None):
     return found
 
 
-def checkNpmV():
-    '''Get the installed NPM version
-    
-        Returns:
-        str: NPM version (if found) or None
-    
-    '''
-    
-    try:
-        return str(check_output("npm --version", shell=False).decode()).replace('v', '')
-    except Exception:
-        return None
-
-
 def checkNpmPkg(pkg):
     '''Check if the given NPM Package is globally installed
     
@@ -285,6 +271,19 @@ def checkNpmPkg(pkg):
     return str(cmd.read().replace("â””â”€â”€", "").replace("â””â”€â”¬", "")).split("\n")[1].strip() != "(empty)"
 
 
+def getNpmV():
+    '''Get the installed NPM version
+    
+        Returns:
+        str: NPM version (if found) or None
+    
+    '''
+
+    try:
+        return str(check_output("npm --version", shell=False).decode()).replace('v', '')
+    except Exception:
+        return None
+    
 
 def getJdkV():
     '''Get the installed JDK version
@@ -312,13 +311,30 @@ def getNodejsV():
         return None
 
 def getRegEdAttr(attr = "Path"):
+    '''Get a specific attribute value from within a registry key
+    
+        Parameters:
+            attr (str) - the attribute of the value to get
+            
+        Returns:
+            str | None
+    
+    '''
     def _filter_(x):
         if len(x.strip()) == 0:
             return False
         else:
             return True
-    return ' '.join(list(filter(_filter_, str(check_output('reg.exe query "HKEY_LOCAL_MACHINE\SOFTWARE\Android Studio" /v {}'.format(attr)).decode()).split('\n')[2].strip().split(' ')))[2:])
+    try:
+        return ' '.join(list(filter(_filter_, str(check_output('reg.exe query "HKEY_LOCAL_MACHINE\SOFTWARE\Android Studio" /v {}'.format(attr)).decode()).split('\n')[2].strip().split(' ')))[2:])
+    except Exception:
+        return None
     
     
 def is_os_64bit():
+    '''Check if the current platform architecture is 64 or 32 bit
+    
+        Return:
+        bool
+    '''
     return platform.machine().endswith('64')
